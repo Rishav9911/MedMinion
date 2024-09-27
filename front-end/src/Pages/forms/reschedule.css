@@ -1,13 +1,15 @@
+
 .reschedule-container {
+    margin: auto;
     margin-top:6rem;
-    margin-bottom:6rem;
-    margin-left: 20rem;
+    margin-bottom: 6rem;
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 8rem;
     background-color:powderblue;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    box-shadow: 5rem 5rem rgb(62, 109, 116);
 }
 
 .reschedule-container h1 {
@@ -19,7 +21,8 @@
 }
 
 .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 3px;
+    margin-top:3rem;
 }
 
 .form-group label {

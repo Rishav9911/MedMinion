@@ -83,6 +83,7 @@ const RescheduleAppointment = () => {
     };
 
     return (
+        <div className='reschedulePage'>
         <div className="reschedule-container">
             <h1>Reschedule Appointment</h1>
 
@@ -118,7 +119,7 @@ const RescheduleAppointment = () => {
                     <Select
                         options={doctorAvailability.map(slot => ({
                             value: { date: slot.date, time: slot.time },
-                            label: `${slot.date} at ${slot.time}`
+                            label: `${slot.date} at ${slot.time}, ${slot.day_name}`
                         }))}
                         onChange={(option) => setNewAppointmentSlot(option.value)}
                     />
@@ -129,6 +130,7 @@ const RescheduleAppointment = () => {
 
             {responseMessage && <p className="success-message">{responseMessage}</p>}
             {error && <p className="error-message">{error}</p>}
+        </div>
         </div>
     );
 };

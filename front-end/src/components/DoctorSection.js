@@ -225,7 +225,7 @@ const handleSubmit = async (e) => {
             onChange={(e) => setCurrentDisease(e.target.value)}
             placeholder="Enter disease"
           />
-          <button onClick={handleDiseaseInput}>Add Symptom</button>
+          <button onClick={handleDiseaseInput}>Add Disease</button>
           <div className="output-box">
             <h4>Disease Input</h4>
             <ul>
@@ -253,7 +253,7 @@ const handleSubmit = async (e) => {
         <div className="doctor-box">
           {!isDoctorConfirmed ? (
             <>
-              <h3>Confirm Doctor's Name</h3>
+              <h3> Check Appointments </h3>
               <input
                 type="text"
                 value={doctorName}
@@ -265,7 +265,7 @@ const handleSubmit = async (e) => {
             </>
           ) : (
             <>
-              <h3>Select a Day for Appointments</h3>
+              <h3>Select a Day to Check for Appointments Schdeuled</h3>
               <Calendar onChange={handleDateChange} value={selectedDate} />
               <div className="output-box">
                 <h4>Appointments on {selectedDate.toDateString()}</h4>

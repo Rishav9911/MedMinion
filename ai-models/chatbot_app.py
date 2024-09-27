@@ -83,6 +83,42 @@ def fetch_doctor_availability():
     return jsonify(availability)
 
 
+@app.route('/fetch_doctor_availability2', methods=['GET'])
+def fetch_doctor_availability2():
+    doctor_name = request.args.get('doctor_name')
+    today = datetime.today()
+    availability = []
+
+    # Fetch the doctor's availability record
+    doctor_schedule = doctor_availability_collection.find_one({"doctor_name": {"$regex": doctor_name.strip(), "$options": "i"}})
+
+    if not doctor_schedule or "availability" not in doctor_schedule:
+        return jsonify({"error": "Doctor schedule not found or no availability field"}), 404
+
+    doctor_availability = doctor_schedule["availability"]
+
+    # Loop through the next 7 days
+    for i in range(7):
+        day = today + timedelta(days=i)
+        day_name = get_day_of_week(day)
+        date = day.strftime('%Y-%m-%d')
+
+        # If the day is in the availability dictionary, check for available time slots
+        if day_name in doctor_availability:
+            time_slots = doctor_availability[day_name]
+
+            for time_slot, slots in time_slots.items():
+                if isinstance(slots, list) and any(slot == 0 for slot in slots):  # Check if at least one slot is available (0)
+                    # If there's an available slot, append the time and date to availability
+                    availability.append({
+                        "date": date,
+                        "day_name": day_name,
+                        "time": time_slot  # Return the available time slot
+                    })
+
+    return jsonify(availability)
+
+
 @app.route('/fetch_appointments', methods=['GET'])
 def fetch_appointments():
     patient_email = request.args.get('patient_email')

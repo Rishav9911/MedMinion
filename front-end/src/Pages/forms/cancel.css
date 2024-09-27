@@ -1,13 +1,15 @@
 .cancel-container {
-    margin-top:6rem;
-    margin-bottom:6rem;
-    margin-left: 20rem;
+    margin: auto;
+    margin-top:10rem;
+    margin-bottom: 6rem;
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 5rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: rgb(237, 173, 173)
+    background-color: rgb(237, 173, 173);
+    box-shadow: 5rem 5rem rgb(149, 101, 101);
+
 }
 
 .cancel-container h1 {

@@ -72,7 +72,8 @@ const BookAppointment = () => {
         const fetchAvailability = async () => {
             if (selectedDoctor) {
                 try {
-                    const response = await axios.get(`http://localhost:5001/fetch_doctor_availability?doctor_name=${selectedDoctor.value}`);
+                    const response = await axios.get(`http://localhost:5001/fetch_doctor_availability2?doctor_name=${selectedDoctor.value}`);
+                    console.log(response.data)
                     setAvailability(response.data);
                 } catch (error) {
                     console.error('Error fetching availability:', error);
@@ -152,7 +153,12 @@ const BookAppointment = () => {
                         <div className="select-container">
                             <label>Select Time Slot:</label>
                             <Select
-                                options={availability.find(avail => avail.date === selectedDate.value)?.available_times?.map(time => ({ value: time, label: time })) || []}
+                                // options={availability.find(avail => avail.date === selectedDate.value)?.available_times?.map(time => ({ value: time, label: time })) || []}
+                                options={
+                                    availability
+                                        .filter(avail => avail.date === selectedDate.value) // Ensure selectedDate matches the availability date
+                                        .map(avail => ({ value: avail.time, label: avail.time }))  // Extract and map the time to the Select options
+                                }
                                 onChange={setSelectedTime}
                                 value={selectedTime}
                             />
